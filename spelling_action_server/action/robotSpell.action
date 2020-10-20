@@ -1,0 +1,8 @@
+#goal
+std_msgs/String stringToSpell
+---
+#result
+std_msgs/Int32 successFail
+---
+#feedback
+std_msgs/String letterBeingSpelled
