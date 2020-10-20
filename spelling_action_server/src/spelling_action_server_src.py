@@ -219,10 +219,12 @@ class RobotSpellClass(object):
         return 1
 
     def goal_callback(self, goal):
-        print("string to spell is" + str(goal.stringToSpell.data) + "\n")
-        print("len of string to spell is " + str(int(len(str(goal.stringToSpell.data)))) + "\n")
+        #print("string to spell is" + str(goal.stringToSpell.data) + "\n")
+        #print("len of string to spell is " + str(int(len(str(goal.stringToSpell.data)))) + "\n")
+        setForNextLetter(0)
         for i in range(len(str(goal.stringToSpell.data))):
-            print(i)
+
+            #print(i)
             
             #check if preempted
             if self._as.is_preempt_requested():
@@ -233,11 +235,11 @@ class RobotSpellClass(object):
 
             #iterate through string and build a list of vel commands to publish
             print("Letter being printed is " + str(goal.stringToSpell.data)[i] + "\n")
-            self._feedback = str(goal.stringToSpell.data)[i] + " is about to be drawn."
+            self._feedback.letterBeingSpelled.data = str(goal.stringToSpell.data)[i] 
             self._as.publish_feedback(self._feedback)
             successOrFail = self.letterPrint(str(goal.stringToSpell.data)[i])
             setForNextLetter(i+1)
-        self._result.successFail = successOrFail
+        self._result.successFail.data = successOrFail
         self._as.set_succeeded(self._result)
         return 
     

@@ -1,0 +1,6 @@
+  
+<launch>
+    <!-- Start Action Client that calls Action server that moves the robot -->
+    <node pkg="spelling_action_client" type="spelling_action_client_src.py" name="spelling_action_client_node"  output="screen">
+    </node>
+</launch>
